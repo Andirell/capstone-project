@@ -1,8 +1,11 @@
 import {DM_Serif_Text} from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navigation/navbar";
+import Footer from "@/components/navigation/footer";
 
 const dmSerifText = DM_Serif_Text({
   variable: "--font-dmSerifText",
+  weight: ["400"],
   subsets: ["latin"],
 });
 
@@ -16,9 +19,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${DM_Serif_Text.className} antialiased`}
+        className={`${dmSerifText.className} antialiased`}
       >
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
