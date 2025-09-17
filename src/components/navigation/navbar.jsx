@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 
 export default function Navbar() {
   return (
-    <header className=" bg-[#FDF6E3]">
-        <MaxWidthContainer className="py-6 flex md:justify-between items-center text-[#EC5C42]">
+    <header className=" bg-[#3C1414]">
+        <MaxWidthContainer className="py-6 flex md:justify-between items-center text-[#FFF1F0]">
                 <Link href={"/"}>
                  <h1 className="font-black text-5xl cursor-pointer">JobZ</h1>
                 </Link>
@@ -25,8 +25,11 @@ export default function Navbar() {
                 </ul>
              </nav>
 
-             <Button className={"bg-[#EC5C42] text-white w-24 h-12 rounded-2xl hover:bg-[#3C1414] cursor-pointer"}>Post Job</Button>
-             
+              <Button className={"bg-[#EC5C42] text-white w-24  font-bold h-12 rounded-2xl hover:text-white hover:bg-[#3C1414] shadow-accent-foreground cursor-pointer"}>Post Job</Button>
+              
+              
+  
+
 
 
         </MaxWidthContainer>   
