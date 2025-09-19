@@ -5,7 +5,7 @@ import { BriefcaseBusiness, Users, Star, ChartNoAxesCombined } from "lucide-reac
 
 export default function HowItWorks() {
   return (
-   <section className="bg-[#FFF8F0]">
+   <section className="bg-[#FFF8F0] border border-red-900">
     <MaxWidthContainer className="text-center py-20 space-y-6">
 
         <div className="grid grid-cols-2 gap-8 items-center border rounded-2xl bg-gray-100 shadow-2xl px-8 py-12">

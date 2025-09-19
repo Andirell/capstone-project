@@ -5,15 +5,19 @@ export const differentJobs = [
     company: "TechNova",
     location: "Lagos",
     salary: "$6,000 - $10,000",
-    tags: "Remote"
+    tags: "Remote",
+    description: "We are looking for a highly motivated Software Developer to join our fast-growing technology team at TechNova. You will be responsible for designing, building, testing, and maintaining high-quality web and mobile applications. This role requires strong problem-solving skills, the ability to write clean and scalable code, and a passion for building products that impact thousands of users daily. You will work closely with cross-functional teams, including product managers, designers, and QA engineers, to deliver solutions on time and at scale.",
+    requirement: "Bachelor degree in Computer Science, Software Engineering, or related field. "
   },
   {
     id: 2,
-    title: "Data Analyst",
+    title: "Data Analyst", 
     company: "Insight Analytics",
     location: "Abuja",
     salary: "$4,000 - $7,000",
-    tags: "Remote"
+    tags: "Remote",
+   description: "We are looking for a highly motivated Software Developer to join our fast-growing technology team at TechNova. You will be responsible for designing, building, testing, and maintaining high-quality web and mobile applications. This role requires strong problem-solving skills, the ability to write clean and scalable code, and a passion for building products that impact thousands of users daily. You will work closely with cross-functional teams, including product managers, designers, and QA engineers, to deliver solutions on time and at scale.",
+    requirement: "Bachelor degree in Computer Science, Software Engineering, or related field. "
   },
   {
     id: 3,
