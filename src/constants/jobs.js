@@ -7,7 +7,7 @@ export const differentJobs = [
     salary: "$6,000 - $10,000",
     tags: "Remote",
     description: "We are looking for a highly motivated Software Developer to join our fast-growing technology team at TechNova. You will be responsible for designing, building, testing, and maintaining high-quality web and mobile applications. This role requires strong problem-solving skills, the ability to write clean and scalable code, and a passion for building products that impact thousands of users daily. You will work closely with cross-functional teams, including product managers, designers, and QA engineers, to deliver solutions on time and at scale.",
-    requirement: "Bachelor degree in Computer Science, Software Engineering, or related field. "
+    requirement: "Bachelor's degree in Computer Science, Software Engineering, or related field. "
   },
   {
     id: 2,
@@ -16,8 +16,8 @@ export const differentJobs = [
     location: "Abuja",
     salary: "$4,000 - $7,000",
     tags: "Remote",
-   description: "We are looking for a highly motivated Software Developer to join our fast-growing technology team at TechNova. You will be responsible for designing, building, testing, and maintaining high-quality web and mobile applications. This role requires strong problem-solving skills, the ability to write clean and scalable code, and a passion for building products that impact thousands of users daily. You will work closely with cross-functional teams, including product managers, designers, and QA engineers, to deliver solutions on time and at scale.",
-    requirement: "Bachelor degree in Computer Science, Software Engineering, or related field. "
+    description: "Insight Analytics is seeking a detail-oriented Data Analyst to join our analytics team. In this role, you will work with large datasets to uncover insights, identify trends, and provide actionable recommendations for business growth. You will collaborate with cross-functional teams including marketing, product, and finance to design data models, build dashboards, and generate reports that drive strategic decision-making. This is a great opportunity for someone who enjoys problem-solving and leveraging data to create impact.",
+    requirement: "Bachelor's degree in Statistics, Mathematics, Economics, Computer Science, or a related field. Strong proficiency in SQL, Excel, and data visualization tools such as Tableau or Power BI. Knowledge of Python or R for statistical analysis is a plus. Excellent analytical and critical-thinking skills with the ability to communicate findings clearly to non-technical stakeholders. Prior experience in a data-focused role is preferred."
   },
   {
     id: 3,
@@ -25,7 +25,9 @@ export const differentJobs = [
     company: "SecureNet",
     location: "Port Harcourt",
     salary: "$5,500 - $9,000",
-    tags: "Remote"
+    tags: "Remote",
+    description: "SecureNet is hiring a Cybersecurity Analyst to safeguard our systems, networks, and applications. You will monitor for security breaches, investigate incidents, and implement protective measures to ensure the confidentiality and integrity of sensitive data. You will work with IT teams to enforce security protocols, conduct risk assessments, and recommend improvements in line with industry best practices. This role is critical to protecting both internal infrastructure and customer-facing systems.",
+    requirement: "Bachelor’s degree in Cybersecurity, Information Technology, or a related field. Proven experience with security tools such as SIEM, IDS/IPS, and firewalls. Knowledge of compliance standards (ISO 27001, GDPR, NIST) is an advantage. Strong problem-solving skills, attention to detail, and the ability to respond quickly to incidents. Relevant certifications (CISSP, CEH, CompTIA Security+) are highly desirable."
   },
   {
     id: 4,
@@ -33,23 +35,29 @@ export const differentJobs = [
     company: "CodeBase",
     location: "Lagos",
     salary: "$5,000 - $8,500",
-    tags: "Hybrid"
+    tags: "Hybrid",
+    description: `CodeBase seeks a Frontend Engineer to design responsive user interfaces using modern JavaScript frameworks.`,
+    requirement: `- Proficiency in HTML, CSS, JavaScript, React/Vue  - Experience with REST APIs  - Strong design-to-code translation skills`
   },
-  {
+    {
     id: 5,
     title: "Backend Engineer",
     company: "CloudWorks",
     location: "Enugu",
     salary: "$6,500 - $9,500",
-    tags: "Full-time"
+    tags: "Full-time",
+    description: `CloudWorks is hiring a Backend Engineer to build scalable backend systems and APIs powering user applications.`,
+    requirement: `- Proficiency in Node.js, Python, or Java  - Database experience (PostgreSQL, MongoDB)  - Familiarity with AWS, Azure, or GCP`
   },
   {
     id: 6,
-    title: "Registered Nurse",
-    company: "Lasuth",
-    location: "Lagos",
-    salary: "$5,000 - $10,000",
-    tags: "Full-time"
+    title: "DevOps Engineer",
+    company: "NextDeploy",
+    location: "Kano",
+    salary: "$6,000 - $9,500",
+    tags: "Hybrid",
+    description: `We need a DevOps Engineer to manage CI/CD pipelines, improve system reliability, and support cloud deployments.`,
+    requirement: `- Strong knowledge of Docker, Kubernetes  - Familiarity with Terraform and Jenkins  - Linux system administration experience`
   },
   {
     id: 7,
@@ -57,7 +65,10 @@ export const differentJobs = [
     company: "Univelcity Hospital",
     location: "Lagos",
     salary: "$15,000 - $20,000",
-    tags: "Full-time"
+    tags: "Full-time",
+    description: `Diagnose, treat, and manage patient care in various departments.`,
+    requirement: `- Medical degree and practicing license  
+- Strong problem-solving skills`
   },
   {
     id: 8,

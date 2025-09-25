@@ -41,11 +41,10 @@ export default function About() {
             </div>
           </div>
 
-          {/* What we offer */}
           <div className="text-center mb-12">
             <h2 className="text-2xl font-bold text-[#3C1414]">What We Offer</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1  gap-8">
             <div className="p-6 bg-white rounded-2xl shadow">
               <h3 className="text-lg text-[#EC5C42] font-semibold mb-2">For Job Seekers</h3>
               <p className="text-gray-600">
