@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Contact() {
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-[#FFF8F0] py-16">
       <MaxWidthContainer>
         <div className="space-y-16">
           <div className="max-w-4xl mx-auto space-y-16">
