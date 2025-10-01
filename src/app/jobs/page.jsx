@@ -12,7 +12,7 @@ export default function Jobs() {
         : differentJobs.filter(job => job.category === selectedCategory);
 
     return (
-        <section className="">
+        <section className="bg-[#FFF8F0]">
             <MaxWidthContainer className="flex gap-20">
                 <aside className="sticky top-0 w-48 space-y-10 border-r-2 border-gray-400 h-full py-10 divide-y-2">
                     {JobsCategories.map((category, index) => (

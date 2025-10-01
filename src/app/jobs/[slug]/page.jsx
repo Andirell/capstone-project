@@ -27,6 +27,7 @@ function JobApplicationForm() {
         <label className="block text-sm font-medium text-gray-700">Email</label>
         <input
           type="email"
+          placeholder="johndoe12@gmail.com"
           className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
           required
         />
@@ -43,7 +44,7 @@ function JobApplicationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Reasons why we should pick you?</label>
+        <label className="block text-sm font-medium text-gray-700">Why should we pick you?</label>
         <textarea
           className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
           rows="4"
@@ -77,8 +78,9 @@ export default function Page({ params }) {
   }
 
   return (
-    <MaxWidthContainer>
-      <div className="border border-gray-200 rounded-2xl p-8 space-y-6 w-full max-w-4xl mx-auto">
+    <section className="py-16 bg-[#FFF8F0]">
+      <MaxWidthContainer>
+      <div className="border  border-gray-200 rounded-2xl p-8 space-y-6 w-full max-w-4xl mx-auto">
         <div className="bg-white gap-8 shadow-lg border border-gray-200 rounded-2xl p-6 flex flex-col hover:shadow-xl transition">
           <h1 className="text-5xl text-[#3C1414]">{differentJob.title}</h1>
           <div className="flex gap-8 text-gray-600">
@@ -95,12 +97,12 @@ export default function Page({ params }) {
           </Button>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 border border-gray-200 rounded-2xl p-6 bg-white shadow-lg hover:shadow-xl transition">
           <h2 className="text-2xl font-bold text-[#3C1414] mb-4">Job Description</h2>
           <p>{differentJob.description}</p>
         </div>
 
-        <div>
+        <div className="space-y-6 border border-gray-200 rounded-2xl p-6 bg-white shadow-lg hover:shadow-xl transition">
           <h2 className="text-2xl font-light text-[#3C1414] mb-4">Job Requirements</h2>
           <p>{differentJob.requirement}</p>
         </div>
@@ -122,6 +124,7 @@ export default function Page({ params }) {
           </div>
         )}
       </div>
-    </MaxWidthContainer>
-  );
+     </MaxWidthContainer>
+   </section> 
+     );
 }
