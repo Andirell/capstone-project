@@ -63,13 +63,16 @@ export default function Contact() {
               to you as soon as possible.
             </p>
 
-            <form className="space-y-6">
+            <form 
+            action="https://formsubmit.co/andiudom274@gmail.com"
+            method="POST"
+            className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Full Name
                 </label>
                 <input
-                  type="text"
+                  type="text" name="name"
                   placeholder="Enter your full name"
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 "
                   required
@@ -81,7 +84,7 @@ export default function Contact() {
                   Email Address
                 </label>
                 <input
-                  type="email"
+                  type="email" name="email"
                   placeholder="Enter your email"
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 "
                   required
@@ -93,6 +96,8 @@ export default function Contact() {
                   Message
                 </label>
                 <textarea
+                type="text" name="message"
+                  rows="5"
                   placeholder="Write your message here..."
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 "
                   required
