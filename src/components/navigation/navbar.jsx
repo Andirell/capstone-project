@@ -13,7 +13,7 @@ export default function Navbar() {
     <header className=" bg-[#3C1414] relative">
         <MaxWidthContainer className="py-6 flex justify-between items-center text-[#FFF1F0]">
                 <Link href={"/"}>
-                 <h1 className="font-black lg:text-5xl text-4xl cursor-pointer hover:text-[#EC5C42]">JobZ</h1>
+                 <h1 className="font-black lg:text-5xl text-4xl px-2 cursor-pointer hover:text-[#EC5C42]">JobZ</h1>
                 </Link>
             <nav className="hidden lg:block">
                 <ul className="flex lg:gap-16 text-lg font-medium">
