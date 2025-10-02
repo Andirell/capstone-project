@@ -7,17 +7,18 @@ import { Button } from "@/components/ui/button";
 
 
 function JobApplicationForm() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Application submitted!");
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      action="https://formsubmit.co/andiudom274@gmail.com"
+      method="POST"
+      className="space-y-4"
+    >
+      <input type="hidden" name="_captcha" value="false" />
       <div>
         <label className="block text-sm font-medium text-gray-700">Full Name</label>
         <input
           type="text"
+          name="name"
           className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
           required
         />
@@ -27,6 +28,7 @@ function JobApplicationForm() {
         <label className="block text-sm font-medium text-gray-700">Email</label>
         <input
           type="email"
+          name="email"
           placeholder="johndoe12@gmail.com"
           className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
           required
@@ -37,6 +39,7 @@ function JobApplicationForm() {
         <label className="block text-sm font-medium text-gray-700">Resume (Link)</label>
         <input
           type="url"
+          name="resume"
           placeholder="resume link"
           className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
           required
@@ -46,8 +49,10 @@ function JobApplicationForm() {
       <div>
         <label className="block text-sm font-medium text-gray-700">Why should we pick you?</label>
         <textarea
+          name="message"
+          placeholder="Your message"
           className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-          rows="4"
+          rows="7"
         />
       </div>
 
