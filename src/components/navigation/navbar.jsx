@@ -29,9 +29,11 @@ export default function Navbar() {
                 </ul>
              </nav>
                 <div className="hidden lg:block">
-                  <Button className={" p-6 rounded-2xl bg-[#EC5C42] hover:bg-[#d84f39] text-white"}>
-                          Get Started
-                  </Button>
+                  <Link href={"/jobs"}>
+                      <Button className={" p-6 rounded-2xl bg-[#EC5C42] hover:bg-[#d84f39] text-white"}>
+                         Find Jobs
+                     </Button>
+                  </Link>
                 </div>
 
                 <Button className={'lg:hidden bg-[#EC5C42] hover:bg-[#d84f39]'}
@@ -42,7 +44,7 @@ export default function Navbar() {
          </MaxWidthContainer>   
 
                 {isOpen && (
-                  <nav className="absolute top-20 left-0 w-full bg-[#3C1414] text-[#FFF1F0] py-6 md:hidden z-10">
+                  <nav className="absolute top-20 left-0 w-full bg-[#3C1414] text-[#FFF1F0] py-6 md:hiddn z-10">
                     <ul className="flex flex-col items-center gap-6 text-lg font-medium">
                       {Navs.map((link, index) => (
                         <li key={index}>
@@ -54,9 +56,11 @@ export default function Navbar() {
                           </Link>
                         </li>
                       ))}
-                      <Button className="bg-[#EC5C42] hover:bg-[#d84f39] text-white">
-                          Get Started
-                      </Button>
+                      <Link href={"/jobs"}>
+                        <Button className="bg-[#EC5C42] hover:bg-[#d84f39] text-white">
+                          Find Jobs
+                        </Button>
+                      </Link>
                     </ul>
                   </nav>
                 )}

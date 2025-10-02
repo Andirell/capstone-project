@@ -12,13 +12,13 @@ export default function Jobs() {
         : differentJobs.filter(job => job.category === selectedCategory);
 
     return (
-        <section className="bg-[#FFF8F0]">
-            <MaxWidthContainer className="flex gap-20">
-                <aside className="sticky top-0 w-48 space-y-10 border-r-2 border-gray-400 h-full py-10 divide-y-2">
+        <section className="bg-[#FFF8F0] ">
+            <MaxWidthContainer className="flex  flex-col md:flex-row gap-10">
+                <aside className="md:sticky md:top-20 md:w-48 space-y-6 md:space-y-10 border-b-2 md:border-r-2 md:border-b-0 border-gray-400 h-full py-4 md:py-10 divide-y-2 md:divide-y-0 divide-gray-400">
                     {JobsCategories.map((category, index) => (
                         <h2 
                             key={index}
-                            className={`cursor-pointer py-6 hover:text-job-orange hover:scale-105 ${
+                            className={`cursor-pointer py-3 md:py-6 hover:text-job-orange hover:scale-105 transition ${
                                 selectedCategory === category.title ? "text-job-orange font-bold" : ""
                             }`}
                             onClick={() => setSelectedCategory(category.title)}
@@ -28,10 +28,10 @@ export default function Jobs() {
                     ))}
                 </aside>
 
-                <div className="relative flex-1 overflow-y-auto flex flex-wrap gap-8 py-10">
-                    {filteredJobs.map(job => (
-                        <JobCard job={job} key={job.title} />
-                    ))}
+               <div className="relative flex-1 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap gap-6 py-6 md:py-10">
+                    {filteredJobs.map((job) => (
+                     <JobCard job={job} key={job.title} />
+            ))}
                 </div>
             </MaxWidthContainer>
         </section>

@@ -9,17 +9,17 @@ export default function Contact() {
           <div className="max-w-4xl mx-auto space-y-16">
             <div className="text-center space-y-12">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                   Customer Support Center
                 </h2>
-                <p className="text-gray-600 text-lg">
+                <p className="text-gray-600 text-base md:text-lg">
                   Welcome to our Customer Support Center, your dedicated hub for
                   prompt assistance, reliable solutions, and personalized
                   guidance.
                 </p>
               </div>
 
-              <div className="grid grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-xl transition">
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
                     Talk to Us Directly
@@ -54,10 +54,10 @@ export default function Contact() {
           </div>
 
           <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-8">
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
               Contact Us
             </h1>
-            <p className="text-center text-gray-600 mb-8">
+            <p className="text-center text-base md:text-lg text-gray-600 mb-8">
               Have questions, suggestions, or need support? We&apos;d love to
               hear from you. Fill out the form below and our team will get back
               to you as soon as possible.
