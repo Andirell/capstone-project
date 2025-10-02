@@ -35,7 +35,7 @@ export default function Jobs() {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700"
+            className="w-full border border-job-orange rounded-lg my-2 px-3 py-4 text-sm text-[#3C1414]"
           >
             {JobsCategories.map((category, index) => (
               <option key={index} value={category.title}>
