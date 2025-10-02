@@ -86,13 +86,13 @@ export default function Page({ params }) {
     <section className="py-16 bg-[#FFF8F0]">
       <MaxWidthContainer>
       <div className="border  border-gray-200 rounded-2xl p-8 space-y-6 w-full max-w-4xl mx-auto">
-        <div className="bg-white gap-8 shadow-lg border border-gray-200 rounded-2xl p-6 flex flex-col hover:shadow-xl transition">
-          <h1 className="text-5xl text-[#3C1414]">{differentJob.title}</h1>
-          <div className="flex gap-8 text-gray-600">
-            <p>{differentJob.company}</p>
-            <p>{differentJob.location}</p>
-            <p>{differentJob.salary}</p>
-            <p>{differentJob.tags}</p>
+        <div className="bg-white gap-4 shadow-lg border border-gray-200 rounded-2xl p-6 flex flex-col hover:shadow-xl transition">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl break-words text-[#3C1414]">{differentJob.title}</h1>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 text-gray-600">
+            <p className="flex-1">{differentJob.company}</p>
+            <p className="flex-1">{differentJob.location}</p>
+            <p className="flex-1">{differentJob.salary}</p>
+            <p className="flex-1">{differentJob.tags}</p>
           </div>
           <Button
             onClick={() => setIsOpen(true)}
