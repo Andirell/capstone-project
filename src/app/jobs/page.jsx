@@ -14,7 +14,7 @@ export default function Jobs() {
     return (
         <section className="bg-[#FFF8F0] ">
             <MaxWidthContainer className="flex  flex-col md:flex-row gap-10">
-                <aside className="md:sticky md:top-20 md:w-48 space-y-6 md:space-y-10 border-b-2 md:border-r-2 md:border-b-0 border-gray-400 h-full py-4 md:py-10 divide-y-2 md:divide-y-0 divide-gray-400">
+                <aside className="md:sticky md:top-20 md:w-48 space-y-6 md:space-y-10 border-b-2 md:border-r-2 md:border-b-0 border-gray-400 h-full p-4 md:py-10 divide-y-2 md:divide-y-0 divide-gray-400">
                     {JobsCategories.map((category, index) => (
                         <h2 
                             key={index}
