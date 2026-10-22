@@ -1,6 +1,6 @@
 // Creates /robots.txt (tells search engines which pages not to show)
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://my-job-board-delta.vercel.app";
 
 export default function robots() {
   return {

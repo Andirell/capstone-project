@@ -1,6 +1,12 @@
 // Helpers for talking to the Django API (the code in /backend)
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+// On my laptop the API runs at localhost:8000.
+// On Vercel it uses the live API on Render (unless NEXT_PUBLIC_API_URL is set).
+const LIVE_API_URL = "https://jobz-api-a22m.onrender.com/api";
+const LOCAL_API_URL = "http://localhost:8000/api";
+
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || (process.env.NODE_ENV === "production" ? LIVE_API_URL : LOCAL_API_URL);
 
 // Used by server pages to load data.
 // If something goes wrong it returns `fallback` instead of crashing the page.

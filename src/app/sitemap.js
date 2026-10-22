@@ -2,7 +2,7 @@
 
 import { getData } from "@/lib/api";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://my-job-board-delta.vercel.app";
 
 export default async function sitemap() {
   const pages = [
