@@ -1,135 +1,201 @@
-"use client";
-import { use } from "react";   
-import { useState } from "react";
-import { differentJobs } from "@/constants/jobs";
-import MaxWidthContainer from "@/components/things-to-share/max-width-container";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import CompanyLogo from "@/components/company-logo";
+import ApplyButton from "@/components/apply-button";
+import SaveButton from "@/components/save-button";
+import ShareButton from "@/components/share-button";
+import JobCard from "@/components/job-card";
+import { getData } from "@/lib/api";
+import { formatDate, formatSalary, timeAgo } from "@/lib/format";
 
+// Sets the browser tab title, e.g. "Frontend Engineer at CodeBase | JobZ"
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const job = await getData(`/jobs/${slug}/`);
+  if (!job) {
+    return { title: "Job not found" };
+  }
+  return {
+    title: `${job.title} at ${job.company.name}`,
+    description: `${job.company.name} is hiring a ${job.title} in ${job.location}.`,
+  };
+}
 
-function JobApplicationForm() {
+// Extra info for Google so the job can show up in Google's job search
+function googleJobData(job) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description,
+    datePosted: job.created_at,
+    hiringOrganization: { "@type": "Organization", name: job.company.name },
+    jobLocation: {
+      "@type": "Place",
+      address: { "@type": "PostalAddress", addressLocality: job.location, addressCountry: "NG" },
+    },
+  };
+  if (job.deadline) {
+    data.validThrough = job.deadline;
+  }
+  // Replace "<" so text in a job description can't break out of the <script> tag
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
+// One row in the "job details" box
+function DetailRow({ label, value }) {
   return (
-    <form
-      action="https://formsubmit.co/andiudom274@gmail.com"
-      method="POST"
-      className="space-y-4"
-    >
-      <input type="hidden" name="_captcha" value="false" />
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Full Name</label>
-        <input
-          type="text"
-          name="name"
-          className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-          required
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="johndoe12@gmail.com"
-          className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-          required
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Resume (Link)</label>
-        <input
-          type="url"
-          name="resume"
-          placeholder="resume link"
-          className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-          required
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Why should we pick you?</label>
-        <textarea
-          name="message"
-          placeholder="Your message"
-          className="mt-1 block w-full border border-gray-300 rounded-lg p-2"
-          rows="7"
-        />
-      </div>
-
-      <Button
-        type="submit"
-        className="w-full bg-[#EC5C42] hover:bg-[#d84f39] text-white py-2 rounded-lg font-semibold"
-      >
-        Submit Application
-      </Button>
-    </form>
+    <div className="flex justify-between gap-4 border-b border-line py-3 last:border-b-0">
+      <dt className="text-muted">{label}</dt>
+      <dd className="text-right font-semibold">{value}</dd>
+    </div>
   );
 }
 
-export default function Page({ params }) {
-  const { slug } = use(params);   
-  const differentJob = differentJobs.find(
-    (job) => job.id.toString() === slug.split("-").pop()
-  );
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  if (!differentJob) {
-    return (
-      <MaxWidthContainer>
-        <p className="text-center text-red-500 text-lg py-10">Job not found</p>
-      </MaxWidthContainer>
-    );
+export default async function JobPage({ params }) {
+  const { slug } = await params;
+  const job = await getData(`/jobs/${slug}/`);
+  if (!job) {
+    notFound();
   }
 
+  const similarJobs = await getData(`/jobs/${slug}/related/`, []);
+  const salary = formatSalary(job);
+  // Split the description into paragraphs at each new line
+  const paragraphs = job.description.split("\n").filter((line) => line.trim() !== "");
+
   return (
-    <section className="py-16 bg-[#FFF8F0]">
-      <MaxWidthContainer>
-      <div className="border  border-gray-200 rounded-2xl p-8 space-y-6 w-full max-w-4xl mx-auto">
-        <div className="bg-white gap-4 shadow-lg border border-gray-200 rounded-2xl p-6 flex flex-col hover:shadow-xl transition">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl break-words text-[#3C1414]">{differentJob.title}</h1>
-          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 text-gray-600">
-            <p className="flex-1">{differentJob.company}</p>
-            <p className="flex-1">{differentJob.location}</p>
-            <p className="flex-1">{differentJob.salary}</p>
-            <p className="flex-1">{differentJob.tags}</p>
-          </div>
-          <Button
-            onClick={() => setIsOpen(true)}
-            className="w-40 bg-[#EC5C42] hover:bg-[#d84f39] text-white py-3 rounded-xl font-semibold transition"
-          >
-            Apply Now
-          </Button>
-        </div>
+    <article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: googleJobData(job) }} />
 
-        <div className="space-y-6 border border-gray-200 rounded-2xl p-6 bg-white shadow-lg hover:shadow-xl transition">
-          <h2 className="text-2xl font-bold text-[#3C1414] mb-4">Job Description</h2>
-          <p>{differentJob.description}</p>
-        </div>
+      {/* Top section */}
+      <header className="border-b border-line bg-white">
+        <div className="container-page pt-6 pb-10">
+          <p className="text-sm text-muted">
+            <Link href="/jobs" className="text-muted">Jobs</Link>
+            {job.category && (
+              <>
+                {" › "}
+                <Link href={"/jobs?category=" + job.category.slug} className="text-muted">
+                  {job.category.name}
+                </Link>
+              </>
+            )}
+          </p>
 
-        <div className="space-y-6 border border-gray-200 rounded-2xl p-6 bg-white shadow-lg hover:shadow-xl transition">
-          <h2 className="text-2xl font-light text-[#3C1414] mb-4">Job Requirements</h2>
-          <p>{differentJob.requirement}</p>
-        </div>
-
-        {isOpen && (
-          <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Apply for {differentJob.title}</h2>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  ✕
-                </button>
+          <div className="mt-6 flex flex-col gap-5 sm:flex-row">
+            <CompanyLogo company={job.company} size="lg" />
+            <div>
+              <h1 className="text-4xl sm:text-5xl">{job.title}</h1>
+              <p className="mt-2 text-lg text-muted">
+                <Link href={"/companies/" + job.company.slug} className="font-semibold text-ink">
+                  {job.company.name}
+                </Link>{" "}
+                in {job.location}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                <span className="rounded-full border border-line bg-paper px-3 py-1">{job.work_mode_display}</span>
+                <span className="rounded-full border border-line bg-paper px-3 py-1">{job.job_type_display}</span>
+                {job.experience_level_display && (
+                  <span className="rounded-full border border-line bg-paper px-3 py-1">{job.experience_level_display}</span>
+                )}
+                {salary && <span className="rounded-full bg-green-light px-3 py-1 font-semibold text-green">{salary}</span>}
               </div>
-              <JobApplicationForm />
             </div>
           </div>
-        )}
+        </div>
+      </header>
+
+      <div className="container-page grid gap-10 py-10 lg:grid-cols-[1fr_340px] lg:gap-14">
+        {/* Left: job description */}
+        <div className="max-w-[68ch]">
+          {!job.is_open && (
+            <p className="mb-8 rounded-xl border border-line bg-white px-5 py-4 text-muted">
+              This job has closed. <Link href="/jobs">See other open jobs</Link>.
+            </p>
+          )}
+
+          <h2 className="text-3xl">About the role</h2>
+          <div className="mt-4 space-y-4 text-[1.05rem] leading-relaxed">
+            {paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+
+          {job.requirement_list.length > 0 && (
+            <>
+              <h2 className="mt-10 text-3xl">What you&apos;ll need</h2>
+              <ul className="mt-4 space-y-3 text-[1.05rem]">
+                {job.requirement_list.map((requirement) => (
+                  <li key={requirement} className="flex gap-3">
+                    <span className="mt-2.5 size-2 shrink-0 rounded-full bg-brand" />
+                    {requirement}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {job.benefit_list.length > 0 && (
+            <>
+              <h2 className="mt-10 text-3xl">Benefits</h2>
+              <ul className="mt-4 space-y-3 text-[1.05rem]">
+                {job.benefit_list.map((benefit) => (
+                  <li key={benefit} className="flex gap-3">
+                    <span className="mt-2.5 size-2 shrink-0 rounded-full bg-green" />
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {job.company.description && (
+            <div className="mt-10 rounded-2xl border border-line bg-white p-6">
+              <h2 className="text-2xl">About {job.company.name}</h2>
+              <p className="mt-2 text-muted">{job.company.description}</p>
+              {job.company.website && (
+                <a href={job.company.website} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-semibold text-brand-dark">
+                  Visit website
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Right: apply box */}
+        <aside className="lg:sticky lg:top-24 lg:self-start">
+          <div className="rounded-3xl border border-line bg-white p-6">
+            <ApplyButton job={job} />
+            <div className="mt-3 flex gap-2">
+              <SaveButton slug={job.slug} showText />
+              <ShareButton title={job.title} />
+            </div>
+            <dl className="mt-6 text-sm">
+              {salary && <DetailRow label="Salary" value={salary} />}
+              <DetailRow label="Location" value={job.location} />
+              <DetailRow label="Work setup" value={job.work_mode_display} />
+              <DetailRow label="Job type" value={job.job_type_display} />
+              {job.experience_level_display && <DetailRow label="Experience" value={job.experience_level_display} />}
+              <DetailRow label="Posted" value={timeAgo(job.created_at)} />
+              {job.deadline && <DetailRow label="Apply by" value={formatDate(job.deadline)} />}
+            </dl>
+          </div>
+        </aside>
       </div>
-     </MaxWidthContainer>
-   </section> 
-     );
+
+      {similarJobs.length > 0 && (
+        <section className="container-page">
+          <div className="border-t border-line pt-10">
+            <h2 className="text-3xl">Similar jobs</h2>
+            <div className="mt-4 grid gap-x-10 md:grid-cols-2">
+              {similarJobs.map((similarJob) => (
+                <JobCard key={similarJob.id} job={similarJob} small />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+    </article>
+  );
 }
