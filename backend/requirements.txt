@@ -1,0 +1,11 @@
+Django>=5.2,<5.3
+djangorestframework>=3.16,<4
+djangorestframework-simplejwt>=5.5,<6
+django-cors-headers>=4.7,<5
+dj-database-url>=2.3
+whitenoise>=6.9,<7
+gunicorn>=23
+Pillow>=11
+python-dotenv>=1.0
+# PostgreSQL driver for production (DATABASE_URL=postgres://...)
+psycopg[binary]>=3.2
