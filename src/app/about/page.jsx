@@ -1,78 +1,68 @@
-import MaxWidthContainer from "@/components/things-to-share/max-width-container";
+import { ButtonLink } from "@/components/button";
+import { getData } from "@/lib/api";
+import { plural } from "@/lib/format";
 
-export default function About() {
+export const metadata = { title: "About JobZ" };
+
+export default async function AboutPage() {
+  const stats = await getData("/stats/", null);
+
   return (
-    <section className="py-16 bg-[#FFF8F0]">
-      <MaxWidthContainer>
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#3C1414]">
-            About Us
-          </h1>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
-            Welcome to <span className="font-semibold">JobZ</span>, the platform
-            built to connect job seekers with meaningful career opportunities
-            and help employers find the best talent with ease.
+    <>
+      <section className="container-page py-16">
+        <div className="max-w-3xl">
+          <h1 className="text-5xl sm:text-6xl">Hiring in Nigeria, without the guesswork.</h1>
+          <p className="mt-6 text-xl text-muted">
+            JobZ is built around a simple promise: you should know what happened to every application you send. Job
+            seekers see where each application stands, and employers get one tidy list of candidates instead of a
+            flooded inbox.
+          </p>
+          {stats && (
+            <p className="mt-6 text-lg">
+              Today that&apos;s {plural(stats.open_jobs, "open job")} from {plural(stats.companies, "employer")} across{" "}
+              {plural(stats.categories, "field")}.
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="border-y border-line bg-white">
+        <div className="container-page grid gap-12 py-16 md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl">For job seekers</h2>
+            <p className="mt-3 text-lg text-muted">
+              Search every open role by field, city, work setup and pay. Apply with your CV in a couple of minutes, save
+              jobs for later, and follow each application from submitted to interview.
+            </p>
+            <ButtonLink href="/jobs" variant="dark" className="mt-6">Find a job</ButtonLink>
+          </div>
+          <div>
+            <h2 className="text-3xl">For employers</h2>
+            <p className="mt-3 text-lg text-muted">
+              Post a job for free, get applications with CVs attached, and move candidates through review, shortlist and
+              interview. Each update emails the candidate for you.
+            </p>
+            <ButtonLink href="/register?role=employer" variant="dark" className="mt-6">Post a job</ButtonLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-page grid gap-10 py-16 md:grid-cols-2">
+        <div>
+          <h2 className="text-3xl">Our mission</h2>
+          <p className="mt-3 text-lg text-muted">
+            Make the job search simple and honest: clear listings with real salary ranges, a fast way to apply, and an
+            answer at the end of it.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grids-cols-2 gap-10 mb-16">
-          <div className="p-6 bg-white rounded-2xl shadow hover:shadow-md transition">
-            <h2 className="text-xl font-semibold text-[#EC5C42] mb-2">
-              Our Mission
-            </h2>
-            <p className="text-gray-600 text-base md:text-lg">
-              To simplify the job search process by creating a seamless and
-              user-friendly platform that empowers individuals to find jobs that
-              match their skills, passion, and goals.
-            </p>
-          </div>
-
-          <div className="p-6 bg-white rounded-2xl shadow hover:shadow-md transition">
-            <h2 className="text-xl font-semibold text-[#EC5C42] mb-2">
-              Our Vision
-            </h2>
-            <p className="text-gray-600 text-base md:text-lg">
-              To be the go-to career platform in Africa, bridging the gap
-              between talented professionals and forward-thinking employers.
-            </p>
-          </div>
+        <div>
+          <h2 className="text-3xl">Where we&apos;re going</h2>
+          <p className="mt-3 text-lg text-muted">
+            To be the career platform people across Africa trust first, connecting skilled professionals with employers
+            who are ready to hire.
+          </p>
         </div>
-
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#3C1414]">
-            What We Offer
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3  gap-8">
-          <div className="p-6 bg-white rounded-2xl shadow hover:shadow-md transition">
-            <h3 className="text-lg md:text-xl text-[#EC5C42] font-semibold mb-2">
-              For Job Seekers
-            </h3>
-            <p className="text-gray-600 text-base md:text-lg">
-              Discover thousands of opportunities, apply with ease, and track
-              your applications all in one place.
-            </p>
-          </div>
-          <div className="p-6 bg-white rounded-2xl shadow  hover:shadow-md transition">
-            <h3 className="text-lg md:text-xl text-[#EC5C42] font-semibold  mb-2">
-              For Employers
-            </h3>
-            <p className="text-gray-600 text-base md:text-lg">
-              Post jobs, find top talent, and manage recruitment more
-              efficiently with powerful tools designed for growth.
-            </p>
-          </div>
-          <div className="p-6 bg-white rounded-2xl shadow hover:shadow-md transition">
-            <h3 className="text-lg md:text-xl text-[#EC5C42] font-semibold mb-2">
-              Community
-            </h3>
-            <p className="text-gray-600 text-base md:text-lg">
-              Join a growing network of professionals, share knowledge, and stay
-              updated with the latest career trends.
-            </p>
-          </div>
-        </div>
-      </MaxWidthContainer>
-    </section>
+      </section>
+    </>
   );
 }
